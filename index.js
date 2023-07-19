@@ -1,6 +1,8 @@
 const express = require("express")
 const path = require("path");
-const extrasRouter = require("./controllers/extras");
+const extrasRouter = require("./routes/extras.route");
+const init = require("./services");
+const userRoute = require("./routes/user.route");
 
 const app = express()
 
@@ -19,6 +21,8 @@ app.use("/static", express.static(path.join(__dirname, 'assets')));
 // by using use mathod, you can add router on that route
 app.use('/extras', extrasRouter);
 
+app.use('/user', userRoute);
+
 
 app.use((req, res) => {
     res.status(404).json({ message: "Path not found", path: req.path, status: 404 });
@@ -28,6 +32,10 @@ app.use((err, req, res) => {
     res.status(500).json({message: "Something went wrong"});
 })
 
-app.listen(3000, ()=> {
-    console.log("Server started on: localhost:3000");
+init().then(res => {
+    app.listen(3000, ()=> {
+        console.log("Server started on: http://localhost:3000");
+    })
+}).catch(err => {
+    console.log("Can't initiate services.");
 })
