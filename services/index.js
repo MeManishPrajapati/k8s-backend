@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongoInit = () => new Promise((res, rej)=>{
-    mongoose.connect('mongodb://127.0.0.1:27017/kube').then((m)=>{
+    mongoose.connect('mongodb://admin:password@127.0.0.1:27017').then((m)=>{
         console.log("DB Connected");
         res()
     }).catch(reason => {

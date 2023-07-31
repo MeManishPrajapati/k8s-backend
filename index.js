@@ -1,10 +1,13 @@
 const express = require("express")
+var bodyParser = require('body-parser')
 const path = require("path");
 const extrasRouter = require("./routes/extras.route");
 const init = require("./services");
 const userRoute = require("./routes/user.route");
 
 const app = express()
+
+app.use(bodyParser.json())
 
 // all request will go through assests folder
 // if any file matches url endpoint, it will get serve
