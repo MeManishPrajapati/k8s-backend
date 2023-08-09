@@ -1,0 +1,20 @@
+version: '3' # version of docker-compose
+services: # list of all services
+  mongodb: # container name
+    image: mongo # project image name
+    ports:
+      - 27017:27017 # host:container
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8080:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+
+# No need to mention network, as docker-componse will create new network for all these services
