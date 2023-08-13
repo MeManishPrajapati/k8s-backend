@@ -16,6 +16,4 @@ services: # list of all services
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
-
-
 # No need to mention network, as docker-componse will create new network for all these services

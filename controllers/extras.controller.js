@@ -1,13 +1,13 @@
-function checkHealth(req, res){
-    res.json({ ok: "ok" })
+function checkHealth(req, res) {
+  res.json({ ok: 'ok' });
 }
 
-function errorGenerator(req, res){
-    // continue flag
-    // handle errors
+function errorGenerator(req, res) {
+  // continue flag
+  // handle errors
 }
 
 module.exports = {
-    checkHealth,
-    errorGenerator
-}
+  checkHealth,
+  errorGenerator,
+};
