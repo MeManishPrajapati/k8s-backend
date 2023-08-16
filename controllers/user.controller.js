@@ -8,7 +8,7 @@ async function getUserInfo(req, res) {
 async function getSpecificUserInfo(req, res) {
   const { id } = req.params;
   const users = await UserModel.findById(id);
-  res.json(users);
+  res.json(users.toJSON({ virtuals: true }));
 }
 
 async function addUserInfo(req, res) {

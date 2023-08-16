@@ -6,6 +6,14 @@ const userSchema = new mongoose.Schema({
   lastname: String,
 });
 
+// virtual
+// it is a computed property from stored values
+// to get this in result add toJSON({ virtuals: true })
+// you won't get virtual when you use lean
+userSchema.virtual('fullname').get(function() {
+  return `${this.firstname} ${this.lastname}`
+});
+
 // todo: Add plugins
 // hooks
 // pre [before event complete]
