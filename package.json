@@ -4,7 +4,8 @@
   "description": "k8s backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon .",
+    "start": "node .",
+    "dev": "nodemon .",
     "test": "npm run test"
   },
   "author": "Manish Prajapati",
