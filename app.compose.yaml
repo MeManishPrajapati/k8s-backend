@@ -7,6 +7,16 @@ services: # list of all services
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes: # volumes mentioned here, should be defined below in volumes section
+      - mongo-data:/data/db # volume-name:data-path-which-you-want-to-persist
+  backend:
+    image: backend:v1.0
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
   mongo-express:
     image: mongo-express
     ports:
@@ -16,4 +26,7 @@ services: # list of all services
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+  mongo-data:
+    driver: local
 # No need to mention network, as docker-componse will create new network for all these services

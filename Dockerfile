@@ -1,9 +1,13 @@
 FROM node:18-alpine
 
-RUN mkdir - /app
+# we are going to add env in docker compose file
+# ENV MONGO_DB_USERNAME=admin \
+    # MONGO_DB_PWD=password
+
+RUN mkdir -p /app
 
 COPY . /app
 
-RUN cd /app
+WORKDIR /app
 
-CMD ['node', "."]
+CMD ["node", "."]
