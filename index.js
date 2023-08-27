@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 var bodyParser = require('body-parser');
 const path = require('path');
 const extrasRouter = require('./routes/extras.route');
@@ -8,6 +9,10 @@ const userRoute = require('./routes/user.route');
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(cors({
+  origin: "*"
+}))
 
 // all request will go through assests folder
 // if any file matches url endpoint, it will get serve
