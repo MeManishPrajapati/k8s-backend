@@ -7,8 +7,11 @@ async function getUserInfo(req, res) {
 
 async function getSpecificUserInfo(req, res) {
   const { id } = req.params;
-  const users = await UserModel.findById(id);
-  res.json(users.toJSON({ virtuals: true }));
+  const user = await UserModel.findById(id);
+  if(!user){
+    return res.status(400).json({message: "User not found."})
+  }
+  res.json(user.toJSON({ virtuals: true }));
 }
 
 async function addUserInfo(req, res) {
@@ -37,9 +40,24 @@ async function updateUserInfo(req, res) {
   }
 }
 
+
+async function deleteUserInfo(req, res) {
+  const { id } = req.params;
+  try {
+    await UserModel.deleteOne({ _id: id });
+    res.json({
+      message: "User deleted."
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+}
+
 module.exports = {
   getUserInfo,
   addUserInfo,
   getSpecificUserInfo,
   updateUserInfo,
+  deleteUserInfo
 };
